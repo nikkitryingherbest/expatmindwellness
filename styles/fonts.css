@@ -1,0 +1,18 @@
+p,
+ul {
+    font-family: 'arial', Arial, Helvetica, sans-serif, serif;
+}
+
+
+h1,
+h2,
+h3 .oswald {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.sublogo {
+    letter-spacing: 0.2em;
+}
