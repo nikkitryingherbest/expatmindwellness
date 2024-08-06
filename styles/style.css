@@ -36,3 +36,196 @@ html {
 .custom-beige {
     color: #beb492;
 }
+
+#my-approach .bg-gray-100:not([class*="hover"]) {
+    background-color: #ded3b077 !important;
+}
+
+#services-and-fees {
+    background-color: #ded3b077 !important;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    header .container {
+        flex-direction: column;
+    }
+
+    nav .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .grid-cols-6 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #credentials .grid {
+        grid-template-columns: 1fr;
+    }
+
+    #services-and-fees .flex-wrap>div {
+        width: 50%;
+    }
+}
+
+#reach-out-to-me-when .grid-cols-2>div>div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+#reach-out-to-me-when .grid-cols-2>div>div>div:first-child img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+#reach-out-to-me-when .grid-cols-2>div>div>div:last-child {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+#reach-out-to-me-when .grid-cols-2>div>div>div:last-child p {
+    margin: 0;
+}
+
+#reach-out-to-me-when .grid-cols-2>div>div>div:last-child p:first-child {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+#scrollToTopBtn.show {
+    opacity: 1;
+}
+
+#scrollToTopBtn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #beb492;
+}
+
+#scrollToTopBtn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Media query */
+
+@media (min-width: 768px) {
+
+    #reach_when_0,
+    #reach_when_1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reach-out-item {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .container {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .grid-cols-6 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #reach-out-to-me-when .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    #services-and-fees .flex-wrap>div {
+        width: 100%;
+    }
+
+    #contact-information .md\:w-1\/2 {
+        width: 100%;
+    }
+}
+
+/*Get in Touch */
+
+#contact-information .max-w-md {
+    width: 100%;
+}
+
+#contact-information input,
+#contact-information textarea {
+    background-color: white;
+}
+
+#contact-information button {
+    background-color: #beb492;
+    transition: background-color 0.3s ease;
+}
+
+#contact-information button:hover {
+    background-color: #a69d7f;
+}
+
+/* Footer */
+footer {
+    border-top: 10px solid #beb492;
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+    footer .flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .flex>div {
+        margin-bottom: 1rem;
+    }
+
+    footer .text-sm {
+        margin-top: 1rem;
+    }
+}

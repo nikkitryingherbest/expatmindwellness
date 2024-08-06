@@ -16,3 +16,19 @@ h3 .oswald {
 .sublogo {
     letter-spacing: 0.2em;
 }
+
+.oswald-text {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    /* Lighter weight for body text */
+    font-style: normal;
+}
+
+.oswald {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: italic;
+
+}
