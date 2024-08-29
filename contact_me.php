@@ -1,13 +1,12 @@
 <?php
  
 var_dump($_POST);
-die();
 
 
 require_once '../vendor/autoload.php';
  
 use Project\FormHandler;
-$adminEmail = 'expatmindwellness@gmail.com';
+$adminEmail = 'txt79747@zccck.com';
 $data = json_decode(file_get_contents('php://input'), true);
 $formHandler = new FormHandler($adminEmail, $data);
 if ($formHandler->validate()) {
