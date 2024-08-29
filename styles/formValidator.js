@@ -1,4 +1,3 @@
- 
 class FormValidator {
     constructor(formId) {
         this.form = document.getElementById(formId);
@@ -25,12 +24,17 @@ class FormValidator {
             };
  
             try {
-                const response = await this.postData('/contact_me.php', data);
+                const fullURL = window.location.href;
+                const baseURI = `${window.location.protocol}//${window.location.host}`;
+
+                const response = await this.postData(baseURI + '/contact_me.php', data);
+                console.log(response);
                 if (response.success) {
-                    alert('Form submitted successfully!');
+                    console.log('Form submitted successfully!');
                     this.form.reset();
                     this.clearErrors();
                 } else {
+                    console.log(response);
                     this.handleErrors(response.errors);
                 }
             } catch (error) {
@@ -78,10 +82,11 @@ class FormValidator {
     }
  
     showError(input, message) {
-        const formControl = input.parentElement;
-        formControl.className = 'form-control error';
-        const small = formControl.querySelector('small');
-        small.innerText = message;
+        console.log(input);
+        // const formControl = input.parentElement;
+        // formControl.className = 'form-control error';
+        // const small = formControl.querySelector('small');
+        // small.innerText = message;
     }
  
     showSuccess(input) {

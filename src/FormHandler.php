@@ -55,6 +55,8 @@ class FormHandler
         $message = "Name: " . htmlspecialchars($this->data['name']) . "\n";
         $message .= "Email: " . htmlspecialchars($this->data['email']) . "\n";
         $message .= "Message: " . htmlspecialchars($this->data['message']) . "\n";
+
+        file_put_contents('//log//' . time() . 'log.log', $message);
  
         return mail($this->adminEmail, $subject, $message, 'From: ' . $this->data['email']);
     }
