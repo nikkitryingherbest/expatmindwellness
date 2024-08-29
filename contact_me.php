@@ -1,5 +1,9 @@
 <?php
  
+var_dump($_POST);
+die();
+
+
 require_once '../vendor/autoload.php';
  
 use Project\FormHandler;
