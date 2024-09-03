@@ -1,7 +1,14 @@
 <?php
 require_once 'vendor/autoload.php';
- 
-require 'FormHandler.php'; 
+require 'FormHandler.php';
+
+// Get POST data
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (!isset($data['name']) || !isset($data['email']) || !isset($data['message'])) {
+    echo json_encode(['success' => false, 'errors' => ['general' => 'Invalid form data.']]);
+    exit;
+}
 
 // Create an instance of FormHandler
 $adminEmail = 'nigarhuseyn17@gmail.com'; // Your admin email address
