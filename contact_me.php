@@ -3,12 +3,15 @@
 var_dump($_POST);
 
 
-require_once '../vendor/autoload.php';
+require_once 'vendor/autoload.php';
  
-use Project\FormHandler;
-$adminEmail = 'txt79747@zccck.com';
-$data = json_decode(file_get_contents('php://input'), true);
-$formHandler = new FormHandler($adminEmail, $data);
+require 'FormHandler.php'; 
+
+
+// Create an instance of FormHandler
+$adminEmail = 'nigarhuseyn17@gmail.com'; // Your admin email address
+$formHandler = new \App\FormHandler($adminEmail, $data);
+
 if ($formHandler->validate()) {
     if ($formHandler->sendEmail()) {
         echo json_encode(['success' => true]);
@@ -18,4 +21,5 @@ if ($formHandler->validate()) {
 } else {
     echo json_encode(['success' => false, 'errors' => $formHandler->getErrors()]);
 }
+
 ?>
