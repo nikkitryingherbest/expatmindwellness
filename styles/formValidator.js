@@ -116,7 +116,7 @@ class FormValidator {
     handleErrors(errors) {
         this.clearErrors();
         for (const [field, message] of Object.entries(errors)) {
-            const input = this.form.querySelector(`[name="${field}"]`);
+            const input = this.form.querySelector(`[name="${field}_err"]`);
             if (input) {
                 this.showError(input, message);
             } else {

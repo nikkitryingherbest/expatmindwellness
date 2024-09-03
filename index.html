@@ -266,16 +266,19 @@
                     <h2 class="text-4xl md:text-5xl font-normal text-center mb-12 text-gray-800 tracking-wider custom-beige">Get in Touch</h2>
                     <form id="contactForm">
                         <div class="mb-4 form-control">
+                            <div id="name_err"></div>
                             <input type="text" id="name" name="name" placeholder="Name"
                                 class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
                             <span class="error-message text-red-500 hidden">This field is required</span>
                         </div>
                         <div class="mb-4 form-control">
+                            <div id="email_err"></div>
                             <input type="email" id="email" name="email" placeholder="Email"
                                 class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
                             <span class="error-message text-red-500 hidden">Please enter a valid email</span>
                         </div>
                         <div class="mb-4 form-control">
+                            <div id="message_err"></div>
                             <textarea id="message" name="message" rows="4" placeholder="Type your message here..."
                                 class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300"></textarea>
                             <span class="error-message text-red-500 hidden">This field is required</span>
