@@ -1,32 +1,43 @@
 class FormValidator {
     constructor(formId) {
         this.form = document.getElementById(formId);
+        if (!this.form) {
+            console.error(`Form with ID ${formId} not found.`);
+            return;
+        }
+
         this.nameField = this.form.querySelector('input[name="name"]');
         this.emailField = this.form.querySelector('input[name="email"]');
         this.messageField = this.form.querySelector('textarea[name="message"]');
-        this.errorBlock = document.getElementById('contact_me_error');
- 
+        this.errorBlocks = {
+            name: document.getElementById('name_err'),
+            email: document.getElementById('email_err'),
+            message: document.getElementById('message_err')
+        };
+
+        if (Object.values(this.errorBlocks).some(el => !el)) {
+            console.error('One or more error blocks not found.');
+        }
+
         this.form.addEventListener('submit', (e) => this.validateForm(e));
     }
- 
+
     async validateForm(e) {
         e.preventDefault();
- 
+
         const nameValid = this.validateName();
         const emailValid = this.validateEmail();
         const messageValid = this.validateMessage();
- 
+
         if (nameValid && emailValid && messageValid) {
             const data = {
                 name: this.nameField.value.trim(),
                 email: this.emailField.value.trim(),
                 message: this.messageField.value.trim()
             };
- 
-            try {
-                const fullURL = window.location.href;
-                const baseURI = `${window.location.protocol}//${window.location.host}`;
 
+            try {
+                const baseURI = `${window.location.protocol}//${window.location.host}`;
                 const response = await this.postData(baseURI + '/contact_me.php', data);
                 console.log(response);
                 if (response.success) {
@@ -34,7 +45,6 @@ class FormValidator {
                     this.form.reset();
                     this.clearErrors();
                 } else {
-                    console.log(response);
                     this.handleErrors(response.errors);
                 }
             } catch (error) {
@@ -42,66 +52,82 @@ class FormValidator {
             }
         }
     }
- 
+
     validateName() {
         const name = this.nameField.value.trim();
         if (name === '') {
-            this.showError(this.nameField, 'Name is required.');
+            this.showError('name', 'Name is required.');
             return false;
         } else {
-            this.showSuccess(this.nameField);
+            this.showSuccess('name');
             return true;
         }
     }
- 
+
     validateEmail() {
         const email = this.emailField.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
- 
+
         if (email === '') {
-            this.showError(this.emailField, 'Email is required.');
+            this.showError('email', 'Email is required.');
             return false;
         } else if (!emailRegex.test(email)) {
-            this.showError(this.emailField, 'Email is not valid.');
+            this.showError('email', 'Email is not valid.');
             return false;
         } else {
-            this.showSuccess(this.emailField);
+            this.showSuccess('email');
             return true;
         }
     }
- 
+
     validateMessage() {
         const message = this.messageField.value.trim();
         if (message === '') {
-            this.showError(this.messageField, 'Message is required.');
+            this.showError('message', 'Message is required.');
             return false;
         } else {
-            this.showSuccess(this.messageField);
+            this.showSuccess('message');
             return true;
         }
     }
- 
-    showError(input, message) {
-        console.log(input);
-        // const formControl = input.parentElement;
-        // formControl.className = 'form-control error';
-        // const small = formControl.querySelector('small');
-        // small.innerText = message;
+
+    showError(field, message) {
+        const errorBlock = this.errorBlocks[field];
+        if (errorBlock) {
+            errorBlock.innerText = message;
+            errorBlock.style.display = 'block';
+        }
+        const fieldElement = this.form.querySelector(`[name="${field}"]`);
+        if (fieldElement) {
+            fieldElement.classList.add('border-red-500');
+        }
     }
- 
-    showSuccess(input) {
-        const formControl = input.parentElement;
-        formControl.className = 'form-control success';
+
+    showSuccess(field) {
+        const errorBlock = this.errorBlocks[field];
+        if (errorBlock) {
+            errorBlock.innerText = '';
+            errorBlock.style.display = 'none';
+        }
+        const fieldElement = this.form.querySelector(`[name="${field}"]`);
+        if (fieldElement) {
+            fieldElement.classList.remove('border-red-500');
+        }
     }
- 
+
     clearErrors() {
-        const formControls = this.form.querySelectorAll('.form-control');
-        formControls.forEach((control) => {
-            control.className = 'form-control';
-        });
-        this.errorBlock.innerText = '';
+        for (const [field, errorBlock] of Object.entries(this.errorBlocks)) {
+            if (errorBlock) {
+                errorBlock.innerText = '';
+                errorBlock.style.display = 'none';
+            }
+            const fieldElement = this.form.querySelector(`[name="${field}"]`);
+            if (fieldElement) {
+                fieldElement.classList.remove('border-red-500');
+            }
+        }
     }
- 
+
     async postData(url = '', data = {}) {
         const response = await fetch(url, {
             method: 'POST',
@@ -112,22 +138,16 @@ class FormValidator {
         });
         return response.json();
     }
- 
+
     handleErrors(errors) {
         this.clearErrors();
         for (const [field, message] of Object.entries(errors)) {
-            const input = this.form.querySelector(`[name="${field}_err"]`);
-            if (input) {
-                this.showError(input, message);
-            } else {
-                this.showGeneralError(message);
-            }
+            this.showError(field, message);
         }
     }
- 
+
     showGeneralError(message) {
-        this.errorBlock.innerText = message;
+        console.error(message);
+        // You can optionally add a general error display element here if needed
     }
 }
- 
- 
