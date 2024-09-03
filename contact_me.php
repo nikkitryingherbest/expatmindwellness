@@ -1,12 +1,7 @@
 <?php
- 
-var_dump($_POST);
-
-
 require_once 'vendor/autoload.php';
  
 require 'FormHandler.php'; 
-
 
 // Create an instance of FormHandler
 $adminEmail = 'nigarhuseyn17@gmail.com'; // Your admin email address
