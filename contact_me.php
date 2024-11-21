@@ -11,7 +11,7 @@ if (!isset($data['name']) || !isset($data['email']) || !isset($data['message']))
 }
 
 // Create an instance of FormHandler
-$adminEmail = 'expatmindwellness@gmail.com'; // Your admin email address
+$adminEmail = 'expatmindwellness@posteo.net'; // Your admin email address
 $formHandler = new \App\FormHandler($adminEmail, $data);
 
 if ($formHandler->validate()) {
